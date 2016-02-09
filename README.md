@@ -14,9 +14,4 @@
 |DELETE|/taches/{id}||REMOVED {id}|NOT_FOUND {id}|
 |POST|/users|login|OK login||
 
-Les datas peuvent être envoyés dans nimporte quel ordre en respectant la nomenclature `clef=valeur`
-### Exemple
-
-- Client1:		`JOIN:Etienne:`
-*Fin de la partie : Jordy est le vainqueur*
-- Serveur: `END_GAME:Jordy`
+Les datas peuvent être envoyées dans n'importe quel ordre en respectant la nomenclature `clef=valeur`

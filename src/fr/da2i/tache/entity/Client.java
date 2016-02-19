@@ -70,7 +70,7 @@ public class Client {
 		str += "3. Mettre à jour une tâche" + "\n";
 		str += "4. Supprimer une tâche" + "\n";
 		str += "5. Créer un utilisateur" + "\n";
-		str += "Votre choix ?" + "\n";
+		str += "Votre choix ?";
 		return str;
 	}
 

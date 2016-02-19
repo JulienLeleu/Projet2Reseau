@@ -56,6 +56,7 @@ public class Service implements Runnable {
 				System.out.println("match");
 				parse(str);
 				Message result = execute();
+				System.out.println("Result = " + result);
 				ServiceManager sm = ServiceManager.getInstance();
 				for (Client client : sm.getClients().values()) {
 					try (PrintWriter out = new PrintWriter(client.getSocket().getOutputStream())) {

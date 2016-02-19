@@ -27,7 +27,7 @@ public class Client {
 		}
 		this.login = login;
 		try {
-			sending = new PrintWriter(socket.getOutputStream());
+			sending = new PrintWriter(socket.getOutputStream(), true);
 			receipt = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class Client {
 	public static void main(String[] args) {
 		//Client client = new Client(args[0], Integer.parseInt(args[1]), args[2]);
 		Client client = new Client("localhost", 9876, "julien");
-		String request = "";	//Requête envoyée au serveur (sous la forme GET|POST|PUT|DELETE ...)
+		String request = "";						//Requête envoyée au serveur (sous la forme GET|POST|PUT|DELETE ...)
 		System.out.println(client.getChoices());
 		Scanner sc = new Scanner(System.in);		//Scanner utilisé pour les infos complémentaires
 
@@ -123,7 +123,7 @@ public class Client {
 			break;
 		}
 		sc.close();
-		System.out.println(request);
+		//System.out.println(request);
 		String receipt = client.send(request);
 		//Réponse du serveur
 		System.out.println(receipt);

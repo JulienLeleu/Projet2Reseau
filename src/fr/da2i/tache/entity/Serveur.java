@@ -29,7 +29,7 @@ public class Serveur {
 				e.printStackTrace();
 				System.exit(1);
 			}
-			new Thread(new Service(client));
+			new Thread(new Service(client)).start();
 		}
 	}
 	

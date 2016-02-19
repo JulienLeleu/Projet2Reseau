@@ -104,7 +104,7 @@ public class Client {
 			System.out.println("etat :");
 			request += "etat=" + sc.nextLine();
 			System.out.println("executant :");
-			request += "executant=" + sc.nextLine();
+			request += ":executant=" + sc.nextLine();
 			break;
 		case 4:
 			request = "DELETE /taches/";
@@ -113,9 +113,9 @@ public class Client {
 			request += sc.nextLine();
 			break;
 		case 5:
-			request = "PUT /users/";
+			request = "PUT /users ";
 			System.out.println("Création d'un nouvel utilisateur");
-			System.out.println("id :");
+			System.out.println("login :");
 			request += sc.nextLine();
 			break;
 		default:

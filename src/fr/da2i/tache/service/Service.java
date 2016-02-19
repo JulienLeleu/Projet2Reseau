@@ -57,6 +57,11 @@ public class Service implements Runnable {
 				parse(str);
 				Message result = execute();
 				System.out.println("Result = " + result);
+				try (PrintWriter out = new PrintWriter(socketClient.getOutputStream())) {
+					out.println(result);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				ServiceManager sm = ServiceManager.getInstance();
 				for (Client client : sm.getClients().values()) {
 					try (PrintWriter out = new PrintWriter(client.getSocket().getOutputStream())) {

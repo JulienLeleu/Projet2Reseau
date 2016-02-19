@@ -1,4 +1,4 @@
-package fr.da2i.taches;
+package fr.da2i.tache.entity;
 
 public enum Method {
 	

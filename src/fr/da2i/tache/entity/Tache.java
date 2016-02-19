@@ -1,7 +1,9 @@
-package fr.da2i.taches;
+package fr.da2i.tache.entity;
 
 import java.util.Arrays;
 import java.util.Observable;
+
+import fr.da2i.tache.TacheException;
 
 public class Tache extends Observable {
 	
@@ -113,6 +115,16 @@ public class Tache extends Observable {
 		return id;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("createur=" + createur + DELIMITER_COUPLES);
+		builder.append("executant=" + executant + DELIMITER_COUPLES);
+		builder.append("description=" + description + DELIMITER_COUPLES);
+		builder.append("etat=" + etat);
+		return builder.toString();
+	}
+	
 	public static Tache from(String data) {
 		if (data == null || !data.contains(DELIMITER_COUPLES)) {
 			throw new TacheException("Données " + data + " incorrecte");
@@ -161,16 +173,6 @@ public class Tache extends Observable {
 			}
 		}
 		return tache;
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("createur=" + createur + DELIMITER_COUPLES);
-		builder.append("executant=" + executant + DELIMITER_COUPLES);
-		builder.append("description=" + description + DELIMITER_COUPLES);
-		builder.append("etat=" + etat);
-		return builder.toString();
 	}
 	
 	public static void main(String[] args) {

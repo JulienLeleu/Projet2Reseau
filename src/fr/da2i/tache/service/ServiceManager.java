@@ -1,7 +1,13 @@
-package fr.da2i.taches;
+package fr.da2i.tache.service;
 
+import java.net.Socket;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+
+import fr.da2i.tache.entity.Client;
+import fr.da2i.tache.entity.Tache;
 
 public class ServiceManager {
 	
@@ -22,8 +28,16 @@ public class ServiceManager {
 		clients = new HashMap<>();
 	}
 	
+	public Map<Integer, Tache> getTaches() {
+		return taches;
+	}
+	
 	public Tache getTache(int id) {
 		return taches.get(id);
+	}
+	
+	public boolean existTache(int id) {
+		return taches.containsKey(id);
 	}
 	
 	public boolean addTache(Tache tache) {
@@ -46,8 +60,29 @@ public class ServiceManager {
 		return taches.remove(id);
 	}
 	
+	public Map<String, Client> getClients() {
+		return clients;
+	}
+	
+	public Client getClientFromSocket(Socket socket) {
+		Collection<Client> c = clients.values();
+		Iterator<Client> i = c.iterator();
+		Client cl;
+		while (i.hasNext()) {
+			cl = i.next();
+			if (cl.getSocket().equals(socket)) {
+				return cl;
+			}
+		}
+		return null;
+	}
+	
 	public Client getClient(String login) {
 		return clients.get(login);
+	}
+	
+	public boolean existClient(String login) {
+		return clients.containsKey(login);
 	}
 	
 	public boolean addClient(Client client) {

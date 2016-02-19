@@ -27,7 +27,7 @@ public class Client {
 		}
 		this.login = login;
 		try {
-			sending = new PrintWriter(socket.getOutputStream(), true);
+			sending = new PrintWriter(socket.getOutputStream());
 			receipt = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,38 +62,36 @@ public class Client {
 	    return null;
 	}
 	
-	public int getChoice() {
-		System.out.println("Connecté avec " + login);
-		System.out.println("1. Informations sur une tâche");
-		System.out.println("2. Créer une tâche");
-		System.out.println("3. Mettre à jour une tâche");
-		System.out.println("4. Supprimer une tâche");
-		System.out.println("5. Créer un utilisateur");
-		System.out.println("Votre choix ?");
-		
-		Scanner sc = new Scanner(System.in);
-		return Integer.parseInt(sc.nextLine());
+	public String getChoices() {
+		String str = "";
+		str += "Connecté avec " + login + "\n";
+		str += "1. Informations sur une tâche" + "\n";
+		str += "2. Créer une tâche" + "\n";
+		str += "3. Mettre à jour une tâche" + "\n";
+		str += "4. Supprimer une tâche" + "\n";
+		str += "5. Créer un utilisateur" + "\n";
+		str += "Votre choix ?" + "\n";
+		return str;
 	}
 
 	public static void main(String[] args) {
 		//Client client = new Client(args[0], Integer.parseInt(args[1]), args[2]);
 		Client client = new Client("localhost", 9876, "julien");
-		String request = "";
-		Scanner sc;
-		
-		switch(client.getChoice()) {
+		String request = "";	//Requête envoyée au serveur (sous la forme GET|POST|PUT|DELETE ...)
+		System.out.println(client.getChoices());
+		Scanner sc = new Scanner(System.in);		//Scanner utilisé pour les infos complémentaires
+
+		switch(Integer.parseInt(sc.nextLine())) {
 		case 1:
 			request = "GET /taches/";
 			System.out.println("Information sur une tâche");
 			System.out.println("id :");
-			sc = new Scanner(System.in);
-			request += sc.nextLine();
+			request += sc.next();
 			break;
 		case 2:
 			request = "POST /taches createur=" + client.getLogin();
 			System.out.println("Création d'une tâche");
 			System.out.println("description :");
-			sc = new Scanner(System.in);
 			request += ":description=" + sc.nextLine();
 			System.out.println("executant :");
 			request += ":executant=" + sc.nextLine();
@@ -102,33 +100,32 @@ public class Client {
 			request = "PUT /taches/";
 			System.out.println("Mise à jour d'une tâche");
 			System.out.println("id :");
-			sc = new Scanner(System.in);
 			request += sc.nextLine() + " ";
 			System.out.println("etat :");
-			sc = new Scanner(System.in);
 			request += "etat=" + sc.nextLine();
 			System.out.println("executant :");
-			sc = new Scanner(System.in);
 			request += "executant=" + sc.nextLine();
 			break;
 		case 4:
 			request = "DELETE /taches/";
 			System.out.println("Supprimer une tâche");
 			System.out.println("id :");
-			sc = new Scanner(System.in);
 			request += sc.nextLine();
 			break;
 		case 5:
 			request = "PUT /users/";
 			System.out.println("Création d'un nouvel utilisateur");
 			System.out.println("id :");
-			sc = new Scanner(System.in);
 			request += sc.nextLine();
 			break;
 		default:
 			System.out.println("Choix incorrect");
+			break;
 		}
+		sc.close();
+		System.out.println(request);
 		String receipt = client.send(request);
+		//Réponse du serveur
 		System.out.println(receipt);
 	}
 }

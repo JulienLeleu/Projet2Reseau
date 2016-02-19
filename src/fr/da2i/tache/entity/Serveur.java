@@ -20,10 +20,11 @@ public class Serveur {
 	
 	public void launch() {
 		Socket client = null;
-
+		System.out.println("Serveur lancé");
 		while (true) {
 			try {
 				client = serveurSocket.accept();
+				System.out.println("Nouveau Client");
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(1);
@@ -33,7 +34,8 @@ public class Serveur {
 	}
 	
 	public static void main(String[] args) {
-		Serveur serveur = new Serveur(Integer.parseInt(args[0]));
+		//Serveur serveur = new Serveur(Integer.parseInt(args[0]));
+		Serveur serveur = new Serveur(9876);
 		serveur.launch();
 	}
 }

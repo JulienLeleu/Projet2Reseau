@@ -123,7 +123,7 @@ public class Client {
 			break;
 		}
 		sc.close();
-		//System.out.println(request);
+		System.out.println(request);
 		String receipt = client.send(request);
 		//Réponse du serveur
 		System.out.println(receipt);

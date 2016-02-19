@@ -39,10 +39,10 @@ public class Service implements Runnable {
 	
 	private Message execute() {
 		if (resource.contains("taches")) {
-			new TacheService().execute(socketClient, method, resource, data);
+			return new TacheService().execute(socketClient, method, resource, data);
 		}
 		else if (resource.contains("users")) {
-			new ClientService().execute(socketClient, method, resource, data);
+			return new ClientService().execute(socketClient, method, resource, data);
 		}
 		return new Message(Code.BAD_REQUEST, "Bad request");
 	}
@@ -51,7 +51,9 @@ public class Service implements Runnable {
 	public void run() {
 		try (Scanner sc = new Scanner(socketClient.getInputStream())) {
 			String str = sc.nextLine();
+			System.out.println("Requête reçue : " + str);
 			if (str.matches(REQUEST_PATTERN)) {
+				System.out.println("match");
 				parse(str);
 				Message result = execute();
 				ServiceManager sm = ServiceManager.getInstance();

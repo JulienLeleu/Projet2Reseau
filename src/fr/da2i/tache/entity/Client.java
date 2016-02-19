@@ -79,26 +79,56 @@ public class Client {
 		//Client client = new Client(args[0], Integer.parseInt(args[1]), args[2]);
 		Client client = new Client("localhost", 9876, "julien");
 		String request = "";
+		Scanner sc;
+		
 		switch(client.getChoice()) {
 		case 1:
-			
+			request = "GET /taches/";
+			System.out.println("Information sur une tâche");
+			System.out.println("id :");
+			sc = new Scanner(System.in);
+			request += sc.nextLine();
 			break;
 		case 2:
-			
+			request = "POST /taches createur=" + client.getLogin();
+			System.out.println("Création d'une tâche");
+			System.out.println("description :");
+			sc = new Scanner(System.in);
+			request += ":description=" + sc.nextLine();
+			System.out.println("executant :");
+			request += ":executant=" + sc.nextLine();
 			break;
 		case 3:
-			
+			request = "PUT /taches/";
+			System.out.println("Mise à jour d'une tâche");
+			System.out.println("id :");
+			sc = new Scanner(System.in);
+			request += sc.nextLine() + " ";
+			System.out.println("etat :");
+			sc = new Scanner(System.in);
+			request += "etat=" + sc.nextLine();
+			System.out.println("executant :");
+			sc = new Scanner(System.in);
+			request += "executant=" + sc.nextLine();
 			break;
 		case 4:
-			
+			request = "DELETE /taches/";
+			System.out.println("Supprimer une tâche");
+			System.out.println("id :");
+			sc = new Scanner(System.in);
+			request += sc.nextLine();
 			break;
 		case 5:
-			
+			request = "PUT /users/";
+			System.out.println("Création d'un nouvel utilisateur");
+			System.out.println("id :");
+			sc = new Scanner(System.in);
+			request += sc.nextLine();
 			break;
 		default:
 			System.out.println("Choix incorrect");
 		}
-		String receipt = client.send("GET ");
+		String receipt = client.send(request);
 		System.out.println(receipt);
 	}
 }

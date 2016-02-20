@@ -67,7 +67,7 @@ public class Client {
 		str += "Connecté avec " + login + "\n";
 		str += "1. Informations sur une tâche" + "\n";
 		str += "2. Créer une tâche" + "\n";
-		str += "3. Changer l'etat d'une tâche" + "\n";
+		str += "3. Modifier une tâche" + "\n";
 		str += "4. Supprimer une tâche" + "\n";
 		str += "5. Créer un utilisateur" + "\n";
 		str += "Votre choix ?";
@@ -98,13 +98,17 @@ public class Client {
 			break;
 		case 3:
 			request = "PUT /taches/";
-			System.out.println("Changement d'etat d'une tâche");
+			System.out.println("Modifier une tâche");
 			System.out.println("id :");
 			request += sc.nextLine() + " ";
-			System.out.println("etat :");
-			request += "etat=" + sc.nextLine();
-			System.out.println("executant :");
+			System.out.println("nouveau créateur :\n(Laissez vide pour ne pas modifier)");
+			request += "createur=" + sc.nextLine();
+			System.out.println("nouvelle description :\n(Laissez vide pour ne pas modifier)");
+			request += ":description=" + sc.nextLine();
+			System.out.println("nouvel executant :\n(Laissez vide pour ne pas modifier)");
 			request += ":executant=" + sc.nextLine();
+			System.out.println("nouvel etat : (TODO|DONE)\n(Laissez vide pour ne pas modifier)");
+			request += ":etat=" + sc.nextLine();
 			break;
 		case 4:
 			request = "DELETE /taches/";
@@ -113,7 +117,7 @@ public class Client {
 			request += sc.nextLine();
 			break;
 		case 5:
-			request = "PUT /users ";
+			request = "POST /users ";
 			System.out.println("Création d'un nouvel utilisateur");
 			System.out.println("login :");
 			request += sc.nextLine();

@@ -13,8 +13,10 @@ import fr.da2i.tache.entity.Message;
 
 public class Service implements Runnable {
 	
-	public static final String REQUEST_PATTERN = "(GET|POST|PUT|DELETE) \\/(taches|users)\\/{0,1}[0-9]*( [a-z]+=[\\w|\\s]+){0,1}(:[a-z]+=[\\w|\\s]+)*";
-	// old regex : (GET|POST|PUT|DELETE) /(taches|users)/[0-9]* [a-z]+=[\\w|\\s]+(:[a-z]+=[\\w|\\s]+)*
+	public static final String REQUEST_PATTERN = "(GET|POST|PUT|DELETE) \\/(taches|users)\\/{0,1}[0-9]*( *\\w*)|( [a-z]+=[\\w|\\s]+){0,1}(:[a-z]+=[\\w|\\s]+)*";
+	//1 old regex : (GET|POST|PUT|DELETE) /(taches|users)/[0-9]* [a-z]+=[\\w|\\s]+(:[a-z]+=[\\w|\\s]+)*
+	//2 old regex : (GET|POST|PUT|DELETE) \\/(taches|users)\\/{0,1}[0-9]*( [a-z]+=[\\w|\\s]+){0,1}(:[a-z]+=[\\w|\\s]+)*
+	//(GET|POST|PUT|DELETE) \\/(taches|users)\\/{0,1}[0-9]*( *\\w*)|( [a-z]+=[\\w|\\s]+){0,1}(:[a-z]+=[\\w|\\s]+)*
 	private Socket socketClient;
 	private String method;
 	private String resource;

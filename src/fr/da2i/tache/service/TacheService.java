@@ -52,13 +52,13 @@ public class TacheService implements Executor {
 	private Message modifyTache(int id, Tache tache, Socket socketClient) {
 		ServiceManager sm = ServiceManager.getInstance();
 		if (sm.existTache(id)) {
-			Client client = sm.getClientFromSocket(socketClient);
-			Tache t = sm.getTache(id);
-			if (t.getCreateur().equals(client.getLogin()) || t.getExecutant().equals(client.getLogin())) {
+			/*Client client = sm.getClientFromSocket(socketClient);
+			Tache t = sm.getTache(id);*/
+			//if (t.getCreateur().equals(client.getLogin()) || t.getExecutant().equals(client.getLogin())) {
 				sm.modifyTache(id, tache);
 				return new Message(Code.MODIFIED, id);
-			}
-			return new Message(Code.UNAUTHORIZED, id);
+			/*}
+			return new Message(Code.UNAUTHORIZED, id);*/
 		}
 		return new Message(Code.NOT_FOUND, id);
 	}
@@ -66,13 +66,13 @@ public class TacheService implements Executor {
 	private Message removeTache(int id, Socket socketClient) {
 		ServiceManager sm = ServiceManager.getInstance();
 		if (sm.existTache(id)) {
-			Client client = sm.getClientFromSocket(socketClient);
-			Tache tache = sm.getTache(id);
-			if (tache.getCreateur().equals(client.getLogin()) || tache.getExecutant().equals(client.getLogin())) {
+			/*Client client = sm.getClientFromSocket(socketClient);
+			Tache tache = sm.getTache(id);*/
+			//if (tache.getCreateur().equals(client.getLogin()) || tache.getExecutant().equals(client.getLogin())) {
 				sm.removeTache(id);
 				return new Message(Code.REMOVED, id);				
-			}
-			return new Message(Code.UNAUTHORIZED, id);
+			/*}
+			return new Message(Code.UNAUTHORIZED, id);*/
 		}
 		return new Message(Code.NOT_FOUND, id);
 	}

@@ -67,7 +67,7 @@ public class Client {
 		str += "Connecté avec " + login + "\n";
 		str += "1. Informations sur une tâche" + "\n";
 		str += "2. Créer une tâche" + "\n";
-		str += "3. Mettre à jour une tâche" + "\n";
+		str += "3. Changer l'etat d'une tâche" + "\n";
 		str += "4. Supprimer une tâche" + "\n";
 		str += "5. Créer un utilisateur" + "\n";
 		str += "Votre choix ?";
@@ -98,7 +98,7 @@ public class Client {
 			break;
 		case 3:
 			request = "PUT /taches/";
-			System.out.println("Mise à jour d'une tâche");
+			System.out.println("Changement d'etat d'une tâche");
 			System.out.println("id :");
 			request += sc.nextLine() + " ";
 			System.out.println("etat :");

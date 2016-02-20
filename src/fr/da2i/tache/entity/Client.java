@@ -101,13 +101,13 @@ public class Client {
 			System.out.println("Modifier une tâche");
 			System.out.println("id :");
 			request += sc.nextLine() + " ";
-			System.out.println("nouveau créateur :\n(Laissez vide pour ne pas modifier)");
+			System.out.println("nouveau créateur :\n");
 			request += "createur=" + sc.nextLine();
-			System.out.println("nouvelle description :\n(Laissez vide pour ne pas modifier)");
+			System.out.println("nouvelle description :\n");
 			request += ":description=" + sc.nextLine();
-			System.out.println("nouvel executant :\n(Laissez vide pour ne pas modifier)");
+			System.out.println("nouvel executant :\n");
 			request += ":executant=" + sc.nextLine();
-			System.out.println("nouvel etat : (TODO|DONE)\n(Laissez vide pour ne pas modifier)");
+			System.out.println("nouvel etat : (TODO|DONE)\n");
 			request += ":etat=" + sc.nextLine();
 			break;
 		case 4:

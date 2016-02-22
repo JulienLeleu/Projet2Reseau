@@ -118,10 +118,10 @@ public class Tache extends Observable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("createur=" + createur + DELIMITER_COUPLES);
-		builder.append("executant=" + executant + DELIMITER_COUPLES);
-		builder.append("description=" + description + DELIMITER_COUPLES);
-		builder.append("etat=" + etat);
+		builder.append("createur=" + getCreateur() + DELIMITER_COUPLES);
+		builder.append("executant=" + getExecutant() + DELIMITER_COUPLES);
+		builder.append("description=" + getDescription() + DELIMITER_COUPLES);
+		builder.append("etat=" + getEtat());
 		return builder.toString();
 	}
 	
@@ -175,12 +175,4 @@ public class Tache extends Observable {
 		return tache;
 	}
 	
-	public static void main(String[] args) {
-		Tache t = new Tache("Julien", "Edouard", "Ceci est une première tache");
-		System.out.println(t);
-		
-		String s = "createur=Julien:executant=Edouard:description=Ceci est un test:etat=TODO";
-		System.out.println(Tache.from(s));
-	}
-
 }

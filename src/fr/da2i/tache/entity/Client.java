@@ -123,7 +123,11 @@ public class Client {
 				}
 				System.out.println("\n" + request + "\n");
 				sending.println(request);
-				System.out.println(receipt.readLine());
+				
+				String str;
+				while ((str = receipt.readLine()) != null) {
+					System.out.println(str);
+				}
 			}
 			else {
 				System.out.println("Choix incorrect");
